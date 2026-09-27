@@ -1,6 +1,6 @@
 ---
 name: arx-ui-spec
-description: Cross-agent UI specification skill that converts Figma exports, screenshots, and visual references into implementation-ready UI specs, design tokens, component maps, and visual QA guidance.
+description: Cross-agent UI specification skill that converts Figma links, Figma exports, screenshots, and visual references into implementation-ready UI specs, design tokens, component maps, and visual QA guidance.
 ---
 
 # ARX UI Spec
@@ -22,9 +22,42 @@ Compare an approved design reference against an implementation screenshot and re
 
 If the user does not name a mode, infer it from the task:
 
-- one design image → `screen`
-- multiple related design screens → `system`
+- one design image or one target Figma node → `screen`
+- multiple related design screens/frames → `system`
 - design/reference + implementation → `compare`
+
+## Supported input sources
+
+Accept whichever source the user already has when the environment can access it safely:
+
+- Figma share URL
+- Figma node/frame URL
+- Figma connector/MCP/design-context source
+- Figma export (`PNG`, `JPG`, or similar)
+- product screenshot or mockup
+- implementation screenshot
+- existing design-token or frontend source in the repository
+
+Do not force a manual PNG export when a Figma link or richer source is already accessible.
+
+## Figma URL ingestion
+
+When the user supplies a Figma link, parse the file key and `node-id` when available and resolve the design through the richest legitimate source available.
+
+Use this access order:
+
+1. native Figma connector/MCP/design-context tooling available to the agent
+2. authenticated Figma REST API access available in the environment
+3. directly viewable public Figma share link
+4. user-provided export/screenshot as fallback
+
+A public Figma link may be viewable without a manual export, but browser visibility is not anonymous REST API access. Do not claim hidden Figma metadata unless the environment actually returns it.
+
+If only the rendered public view is accessible, classify values using the normal confidence model rather than marking them `EXACT`.
+
+When a link is restricted, password-protected, organization-only, expired, or otherwise inaccessible, report the limitation and use another already-available source. Do not bypass Figma access controls.
+
+Follow `references/figma-link-input.md` for detailed URL behavior.
 
 ## Source precedence
 
@@ -34,8 +67,9 @@ Use the richest trustworthy source available, in this order:
 2. design tokens or variables
 3. existing project design-system source
 4. CSS/frontend implementation metadata
-5. exported PNG/JPG/screenshot
-6. visual estimation
+5. directly viewable rendered design
+6. exported PNG/JPG/screenshot
+7. visual estimation
 
 Never use visual estimation to overwrite richer exact metadata.
 
@@ -49,6 +83,8 @@ Classify uncertain design facts using only:
 - `UNKNOWN` — insufficient evidence for a reliable value
 
 Do not silently convert an inferred or estimated value into an exact value.
+
+A source may contain mixed confidence. For example, a Figma connector may provide exact frame dimensions while leaving responsive behavior unknown.
 
 ## Analysis priorities
 
@@ -111,7 +147,7 @@ If screens conflict, report the conflict rather than averaging values into a fak
 
 ## Responsive reasoning
 
-A single desktop screenshot does not prove mobile behavior or exact breakpoints.
+A single desktop screenshot or Figma frame does not prove mobile behavior or exact breakpoints.
 
 When responsive behavior is not directly shown:
 
@@ -119,7 +155,7 @@ When responsive behavior is not directly shown:
 - label approximate measurements as `ESTIMATED`
 - use `UNKNOWN` when the source does not support a reliable conclusion
 
-Never invent an exact breakpoint from a single raster image.
+Never invent an exact breakpoint from a single raster image or single fixed-size Figma frame.
 
 ## Compare mode
 
@@ -219,6 +255,8 @@ Example:
 }
 ```
 
+When the source is a Figma URL, record only non-secret source identifiers that are useful for traceability. Never store OAuth tokens, personal access tokens, cookies, or secret query parameters in generated specs.
+
 ## Markdown behavior
 
 The Markdown output should be concise enough for implementation but complete enough that another developer or coding agent does not need to reinterpret the visual reference from scratch.
@@ -248,11 +286,11 @@ Do not impose React, Tailwind, CSS Modules, shadcn, Material UI, or any other fr
 
 ## Visual evidence limitations
 
-Raster images cannot reliably reveal:
+Raster images and rendered public views cannot reliably reveal every hidden source property, including:
 
-- hidden Auto Layout configuration
-- true Figma constraints
-- component properties/variants
+- hidden Auto Layout configuration when metadata is unavailable
+- true Figma constraints when metadata is unavailable
+- component properties/variants when metadata is unavailable
 - exact font family if visually ambiguous
 - invisible spacing tokens
 - exact breakpoints not shown
@@ -262,15 +300,16 @@ Report those limitations when they materially affect implementation.
 
 ## Privacy
 
-Treat UI screenshots as potentially confidential.
+Treat UI screenshots and Figma links as potentially confidential.
 
-Do not copy private screenshots, credentials, personal information, internal URLs, access tokens, or proprietary assets into public outputs unless explicitly authorized and necessary.
+Do not copy private screenshots, Figma URLs/file keys/node IDs, credentials, personal information, internal URLs, access tokens, or proprietary assets into public outputs unless explicitly authorized and necessary.
 
 ## Reference files
 
 Use these repository references when present:
 
 - `references/confidence-model.md`
+- `references/figma-link-input.md`
 - `references/screen-mode.md`
 - `references/system-mode.md`
 - `references/compare-mode.md`
