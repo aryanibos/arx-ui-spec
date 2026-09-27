@@ -1,12 +1,12 @@
 {
   "name": "arx-ui-spec",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Turn Figma links, Figma exports, and screenshots into implementation-ready UI specs, design tokens, component maps, and visual QA guidance for AI coding agents.",
   "author": {
     "name": "Arya Isnaidi",
     "url": "https://github.com/aryanibos"
   },
-  "license": "MIT",
+  "license": "LicenseRef-ARX-Source-Available-1.0",
   "keywords": [
     "ui",
     "figma",
