@@ -1,35 +1,32 @@
 # ARX UI Spec
 
-[![Version](https://img.shields.io/badge/version-1.0.0-111827)](https://github.com/aryanibos/arx-ui-spec/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-111827)](https://github.com/aryanibos/arx-ui-spec/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-16a34a.svg)](LICENSE)
-[![skills.sh](https://skills.sh/b/aryanibos/arx-ui-spec)](https://skills.sh/aryanibos/arx-ui-spec)
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-cross--agent-7c3aed)](https://skills.sh/)
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-111827)](https://developers.openai.com/plugins/)
-[![UI Specification](https://img.shields.io/badge/focus-UI%20specification-2563eb)](#what-arx-ui-spec-does)
+[![Figma](https://img.shields.io/badge/input-Figma%20%7C%20PNG%20%7C%20Screenshot-f24e1e)](#direct-figma-link-support)
 
 > **From visual reference to implementation-ready UI specification.**
 
-**ARX UI Spec** is a cross-agent UI specification skill that turns **Figma exports, PNG/JPG screenshots, product mockups, and implementation screenshots** into structured design specifications that developers and AI coding agents can actually use.
+**ARX UI Spec** is a cross-agent UI specification skill that turns **direct Figma links, Figma exports, screenshots, product mockups, and implementation screenshots** into structured design specifications that developers and AI coding agents can actually use.
 
-The skill is named **`arx-ui-spec`**.
-
-It extracts and documents layout structure, spacing, typography, colors, radii, component hierarchy, responsive intent, design-system patterns, and visual differences — while clearly separating what is **exact** from what is only **inferred or estimated**.
+It extracts layout structure, spacing, typography, colors, radii, component hierarchy, responsive intent, design-system patterns, and visual differences while clearly separating what is **exact** from what is only **inferred or estimated**.
 
 ---
 
-## Why this exists
+## Why ARX UI Spec exists
 
-A PNG can show how a design looks, but it does not directly tell a developer:
+A screenshot can show how a design looks, but it does not directly tell a developer:
 
 - whether a gap is `20px` or `24px`
-- whether a card uses Auto Layout
-- the actual font family and weight
-- the design token behind a color
-- whether two similar elements are the same component
+- whether a frame uses Auto Layout
+- the real typography values
+- which color comes from a reusable token
+- whether repeated elements are the same component
 - the intended responsive behavior
-- whether a browser implementation is visually close enough
+- whether the frontend implementation is visually close enough
 
-`arx-ui-spec` converts that visual evidence into an implementation contract without pretending that screenshot-derived values are exact Figma metadata.
+ARX UI Spec turns visual evidence into an implementation contract without pretending that screenshot-derived values are exact Figma metadata.
 
 ---
 
@@ -37,13 +34,9 @@ A PNG can show how a design looks, but it does not directly tell a developer:
 
 ### Global cross-agent install
 
-Install globally so the skill is available across projects:
-
 ```bash
 npx skills add -g aryanibos/arx-ui-spec
 ```
-
-This is the recommended install for compatible agent environments such as **Codex, Claude Code, Cursor, OpenCode, Windsurf**, and other Agent Skills-compatible clients.
 
 ### Project-only install
 
@@ -53,108 +46,130 @@ npx skills add aryanibos/arx-ui-spec
 
 ### Codex plugin marketplace
 
-Add this repository as a Codex marketplace source:
-
 ```bash
 codex plugin marketplace add aryanibos/arx-ui-spec
 ```
 
-Then install **ARX UI Spec** from the marketplace/plugin browser.
-
-Useful commands:
-
-```bash
-codex plugin marketplace list
-codex plugin marketplace upgrade
-```
+Then install **ARX UI Spec** from the Codex plugin browser.
 
 ---
 
-## What ARX UI Spec does
+## Direct Figma link support
 
-ARX UI Spec supports three stable modes.
+You do **not** have to manually export a PNG first when the agent environment can access the Figma source.
 
-### 1. `screen` — Single-screen extraction
-
-Analyze one visual reference and produce an implementation-ready specification.
+Give the agent a Figma share link or node/frame link directly:
 
 ```text
-Use arx-ui-spec in screen mode to analyze login.png.
-Generate both JSON and Markdown specs.
+Use arx-ui-spec in screen mode.
+Analyze this Figma design directly:
+https://www.figma.com/design/FILE_KEY/Product?node-id=123-456
+
+Generate the UI specification for the selected frame.
 ```
 
-Typical output:
+ARX UI Spec resolves a Figma source in this order:
 
-- viewport and canvas
-- page layout
-- component tree
+```text
+Native Figma connector / MCP / design context
+        ↓
+Authenticated Figma REST API
+        ↓
+Directly viewable public Figma share link
+        ↓
+Figma PNG/JPG export or screenshot
+        ↓
+Visual estimation
+```
+
+A public Figma link may be viewable without a manual export, but public browser visibility does **not** mean the Figma REST API is anonymous. Exact source metadata is only marked `EXACT` when the execution environment actually returns it.
+
+If the environment can only see the rendered public design, values are classified normally as `INFERRED`, `ESTIMATED`, or `UNKNOWN`.
+
+ARX UI Spec never attempts to bypass password protection, organization-only access, invitations, expired links, or other Figma security controls.
+
+---
+
+## Stable modes
+
+### `screen`
+
+Analyze one design screen, Figma node, screenshot, or export.
+
+```text
+Use arx-ui-spec in screen mode to analyze this Figma frame.
+Generate design-spec.json and design-spec.md.
+```
+
+Produces information such as:
+
+- viewport and layout model
+- semantic component tree
 - dimensions and spacing
 - typography hierarchy
 - colors and effects
 - borders and radii
-- icon/image placement
+- assets and icon placement
 - responsive guidance
 - implementation notes
-- confidence for every uncertain value
+- confidence per uncertain value
 
-### 2. `system` — Multi-screen design-system inference
+### `system`
 
-Analyze multiple related screens and infer repeated design patterns.
+Analyze multiple related screens and infer the shared design system.
 
 ```text
-Use arx-ui-spec in system mode on these 8 exported screens.
-Infer the shared design system and reusable components.
+Use arx-ui-spec in system mode across these product screens.
+Infer shared design tokens and reusable components.
 ```
 
-Typical output:
+Typical output includes:
 
 - color tokens
 - typography scale
 - spacing scale
 - radius scale
 - shadow/elevation patterns
-- repeated components
+- control sizes
 - layout primitives
-- sidebar/header patterns
+- navigation patterns
 - form controls
-- table/card/tag/button variants
-- inconsistent visual patterns that may need designer confirmation
+- card/table/tag/button variants
+- design inconsistencies requiring confirmation
 
-### 3. `compare` — Design vs implementation visual QA
+### `compare`
 
-Compare a design reference with a browser/app screenshot.
+Compare an approved design against the current implementation.
 
 ```text
 Use arx-ui-spec in compare mode.
-Image A is the design reference.
-Image B is the current frontend implementation.
+Reference A is the approved design.
+Reference B is the current frontend implementation.
 ```
 
-Typical output:
+Typical findings include:
 
-- alignment differences
-- padding/gap differences
-- card/input/button size differences
-- typography differences
-- color/effect differences
-- missing/extra elements
-- severity/prioritization
-- visual QA verdict
+- composition differences
+- alignment and spacing mismatch
+- incorrect container sizes
+- typography mismatch
+- component sizing differences
+- color/effect mismatch
+- missing or extra elements
+- visual QA priority and verdict
 
 ---
 
 ## Confidence model
 
-Screenshot analysis is evidence-based estimation, not access to hidden Figma properties.
-
-Every meaningful value should be classified as:
+Every design value must preserve uncertainty.
 
 | Confidence | Meaning |
 | --- | --- |
-| **EXACT** | Directly available from source metadata or explicitly supplied data |
-| **INFERRED** | Strongly supported by repeated patterns or visual/system evidence |
-| **ESTIMATED** | Approximate value measured or judged from a raster image |
-| **UNKNOWN** | The source does not support a reliable value |
+| **EXACT** | Directly available from source metadata or an explicitly supplied value |
+| **INFERRED** | Strongly supported by repeated visual/system evidence |
+| **ESTIMATED** | Approximate value derived from rendered/raster evidence |
+| **UNKNOWN** | Not enough evidence for a reliable value |
 
 Example:
 
@@ -172,83 +187,110 @@ Example:
 }
 ```
 
-ARX UI Spec must never silently upgrade an estimate into an exact design fact.
-
----
-
-## Source priority
-
-When richer source data exists, use it before raster estimation:
-
-```text
-Figma node / design metadata
-        ↓
-Design tokens / variables
-        ↓
-Existing design-system source
-        ↓
-CSS / frontend implementation metadata
-        ↓
-Exported PNG / JPG / screenshot
-        ↓
-Visual estimation
-```
-
-A PNG is a useful fallback, not a substitute for original design metadata.
+A screen can contain mixed confidence. Exact Figma frame dimensions do not automatically make responsive assumptions exact.
 
 ---
 
 ## Output contract
 
-By default, produce both:
+By default ARX UI Spec produces:
 
 ```text
 design-spec.json
 design-spec.md
 ```
 
-### JSON
+`design-spec.json` is the machine-readable implementation contract for coding agents and tooling.
 
-The JSON file is the machine-readable contract for coding agents and tooling.
+`design-spec.md` is the human-readable design handoff for developers, designers, and reviewers.
 
-It includes:
-
-```text
-metadata
-source
-viewport
-layout
-componentTree
-components
-tokens
-responsive
-implementationGuidance
-confidenceSummary
-```
-
-A JSON Schema is included at:
+The repository also includes:
 
 ```text
 schemas/design-spec.schema.json
 ```
 
-### Markdown
-
-The Markdown output is optimized for developers, designers, reviewers, and handoff discussions.
-
-It explains:
-
-- screen structure
-- major measurements
-- reusable patterns
-- uncertain values
-- implementation guidance
-- responsive assumptions
-- confirmation questions when source evidence is insufficient
+for machine-readable validation.
 
 ---
 
-## Example component tree
+## Project output location
+
+When a repository already has a UI/design documentation convention, ARX UI Spec follows it.
+
+Otherwise the default is:
+
+```text
+docs/ui-specs/{feature-name}/
+```
+
+Example:
+
+```text
+docs/
+└── ui-specs/
+    ├── login/
+    │   ├── design-spec.json
+    │   ├── design-spec.md
+    │   └── qa/
+    │       ├── round-1.md
+    │       └── round-2.md
+    │
+    └── design-system/
+        ├── design-system.json
+        └── design-system.md
+```
+
+Feature directories use semantic `kebab-case` names such as:
+
+```text
+login
+document-upload
+document-preview
+access-permissions
+audit-trail
+```
+
+not export names such as `US-01` or `png-2`.
+
+---
+
+## Git hygiene
+
+UI specifications are engineering/design contracts and should be committed by default.
+
+Do **not** ignore the entire `docs/ui-specs/` directory.
+
+Temporary visual artifacts belong under:
+
+```text
+.arx-ui-spec/
+docs/ui-specs/{feature-name}/artifacts/
+```
+
+When appropriate, ARX UI Spec may preserve the project's existing `.gitignore` and append:
+
+```gitignore
+# ARX UI Spec — generated local artifacts
+.arx-ui-spec/
+docs/ui-specs/**/artifacts/
+```
+
+That means:
+
+```text
+design-spec.json   → versioned
+design-spec.md     → versioned
+qa/round-*.md      → versioned
+screenshots/diffs  → local/ignored by default
+cache/temp files   → local/ignored by default
+```
+
+---
+
+## Semantic component mapping
+
+ARX UI Spec describes the design as product/UI structure rather than screenshot fragments.
 
 ```text
 LoginPage
@@ -261,89 +303,39 @@ LoginPage
     └── SubmitButton
 ```
 
-ARX UI Spec should describe **semantic layout**, not encourage brittle screenshot tracing with absolute coordinates.
-
-Avoid implementation guidance like:
-
-```css
-position: absolute;
-left: 457px;
-top: 238px;
-```
-
-when the same composition should instead be expressed through grid, flexbox, container constraints, gaps, and responsive rules.
+Implementation guidance should favor grid, flexbox, container constraints, gaps, and reusable components instead of brittle screenshot tracing such as hard-coded absolute coordinates.
 
 ---
 
-## Example design tokens
+## Figma metadata behavior
 
-```json
-{
-  "colors": {
-    "primary": {
-      "value": "#67AD48",
-      "confidence": "ESTIMATED"
-    },
-    "surface": {
-      "value": "#FFFFFF",
-      "confidence": "ESTIMATED"
-    }
-  },
-  "spacing": {
-    "baseUnit": {
-      "value": 8,
-      "unit": "px",
-      "confidence": "INFERRED"
-    },
-    "scale": [4, 8, 12, 16, 24, 32, 48, 64]
-  }
-}
-```
+When source tooling exposes Figma metadata, ARX UI Spec can use exact information such as:
 
----
+- frame/node dimensions
+- node hierarchy
+- explicit padding and gap
+- layout mode or constraints when surfaced
+- text properties
+- fills, strokes, and effects
+- component/instance relationships
+- variables/styles/tokens when surfaced
 
-## Compare-mode example
+If only part of the metadata is available, unsupported properties keep their own lower confidence instead of inheriting `EXACT` from the entire source.
 
-```text
-Visual QA — Login Screen
-
-Card width
-Reference: ~496px
-Implementation: ~540px
-Delta: +44px
-Confidence: ESTIMATED
-Priority: High
-
-Primary button height
-Reference: ~52px
-Implementation: ~40px
-Delta: -12px
-Confidence: ESTIMATED
-Priority: Medium
-
-Headline family
-Reference: likely Inter / similar grotesk sans
-Implementation: Arial
-Confidence: INFERRED
-Priority: High
-```
-
-The goal is not pixel-perfect theater. The goal is to identify the differences that materially affect visual fidelity and UX.
+When a URL contains `node-id`, that node/frame becomes the primary analysis target unless the requested mode requires broader context.
 
 ---
 
 ## Responsive reasoning
 
-A desktop screenshot does not reveal every breakpoint.
-
-ARX UI Spec may infer likely responsive behavior, but it must label those rules accordingly.
+A single desktop screenshot or fixed Figma frame does not prove mobile behavior.
 
 Good:
 
 ```text
-INFERRED: The centered auth card likely keeps a max-width around 480–520px.
-ESTIMATED: Desktop page horizontal padding appears to be about 24px.
-UNKNOWN: The source does not show how the illustration behaves below tablet width.
+INFERRED: The auth card likely uses a max-width around 480–520px.
+ESTIMATED: Desktop horizontal page padding appears to be about 24px.
+UNKNOWN: No source demonstrates behavior below tablet width.
 ```
 
 Bad:
@@ -352,41 +344,62 @@ Bad:
 The mobile breakpoint is exactly 768px.
 ```
 
-unless the source actually proves it.
+unless source metadata or project code actually supports that claim.
 
 ---
 
-## Usage examples
+## Visual QA priorities
 
-### Analyze a Figma PNG export
+Compare mode uses:
 
 ```text
-Use arx-ui-spec in screen mode.
-Analyze this Figma export and produce design-spec.json and design-spec.md.
-Clearly mark estimated values.
+Critical  broken structure or unusable state
+High      major layout, typography, component, or brand mismatch
+Medium    noticeable spacing, size, color, or effect mismatch
+Low       minor cosmetic difference
 ```
 
-### Extract a design system
+The purpose is not fake pixel-perfect precision. It is to identify differences that materially affect fidelity and UX.
+
+---
+
+## Example workflows
+
+### Figma link → implementation spec
 
 ```text
-Use arx-ui-spec in system mode across all attached product screens.
-Identify repeated tokens and components, and separate consistent patterns from one-off values.
+Figma URL
+   ↓
+ARX UI Spec
+   ↓
+docs/ui-specs/login/design-spec.json
+docs/ui-specs/login/design-spec.md
 ```
 
-### Compare frontend with design
+### Multiple screens → design system
 
 ```text
-Use arx-ui-spec in compare mode.
-Reference A is the approved design.
-Reference B is the current implementation.
-Prioritize the mismatches that most affect visual fidelity.
+Figma screens / exports
+   ↓
+ARX UI Spec system mode
+   ↓
+docs/ui-specs/design-system/
 ```
 
-### Prepare a handoff for another coding agent
+### Design → frontend → visual QA
 
 ```text
-Use arx-ui-spec to turn these screenshots into an implementation contract for another frontend agent.
-Do not generate frontend code yet.
+Approved design
+       ↓
+ARX UI Spec
+       ↓
+Frontend implementation
+       ↓
+Browser screenshot
+       ↓
+ARX UI Spec compare
+       ↓
+docs/ui-specs/{feature}/qa/round-N.md
 ```
 
 ---
@@ -395,38 +408,31 @@ Do not generate frontend code yet.
 
 ```text
 .
-├── skills/
-│   └── arx-ui-spec/
-│       ├── SKILL.md
-│       └── references/
-│           ├── confidence-model.md
-│           ├── screen-mode.md
-│           ├── system-mode.md
-│           ├── compare-mode.md
-│           ├── output-contract.md
-│           └── implementation-guidance.md
+├── skills/arx-ui-spec/
+│   ├── SKILL.md
+│   └── references/
+│       ├── confidence-model.md
+│       ├── figma-link-input.md
+│       ├── screen-mode.md
+│       ├── system-mode.md
+│       ├── compare-mode.md
+│       ├── output-contract.md
+│       ├── output-location.md
+│       └── implementation-guidance.md
 │
 ├── schemas/
 │   └── design-spec.schema.json
 │
-├── examples/
-│   └── login-screen/
-│       ├── design-spec.json
-│       └── design-spec.md
+├── examples/login-screen/
+│   ├── design-spec.json
+│   └── design-spec.md
 │
-├── .agents/
-│   └── plugins/
-│       └── marketplace.json
+├── plugins/arx-ui-spec/
+│   ├── .codex-plugin/plugin.json
+│   └── skills/arx-ui-spec/
 │
-├── plugins/
-│   └── arx-ui-spec/
-│       ├── .codex-plugin/
-│       │   └── plugin.json
-│       └── skills/
-│           └── arx-ui-spec/
-│               ├── SKILL.md
-│               └── references/
-│
+├── .agents/plugins/marketplace.json
+├── .github/workflows/validate.yml
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -434,9 +440,9 @@ Do not generate frontend code yet.
 └── README.md
 ```
 
-The root `skills/arx-ui-spec/` path is the cross-agent Agent Skills entrypoint.
+The root `skills/arx-ui-spec/` directory is the canonical cross-agent skill.
 
-The `plugins/arx-ui-spec/` path packages the same behavior as a Codex plugin.
+The Codex plugin packages an intentionally mirrored copy and CI verifies that the canonical and Codex skill definitions stay synchronized.
 
 ---
 
@@ -444,25 +450,25 @@ The `plugins/arx-ui-spec/` path packages the same behavior as a Codex plugin.
 
 **Evidence before confidence.** If the source cannot prove it, do not call it exact.
 
+**Use richer sources first.** A direct accessible Figma source is better than reconstructing the same screen from a PNG.
+
 **Semantic structure before coordinates.** Describe layout systems and components, not screenshot tracing hacks.
 
-**Patterns before one-offs.** Multi-screen analysis should infer tokens only when repetition supports them.
+**Patterns before one-offs.** Infer design-system tokens only when repeated evidence supports them.
 
-**Implementation-ready output.** Specs should be useful to a developer or coding agent without requiring them to reinterpret the image from scratch.
+**Implementation-ready output.** Another developer or coding agent should not need to reinterpret the source from scratch.
 
-**Design intent over fake precision.** `~24px ESTIMATED` is better than confidently inventing `23px`.
-
-**Visual QA should prioritize impact.** A wrong primary font or container width matters more than a one-pixel icon offset.
+**Design intent over fake precision.** `~24px ESTIMATED` is more useful than confidently inventing `23px`.
 
 ---
 
 ## Versioning
 
-Current stable version: **`1.0.0`**
+Current stable version: **`1.1.0`**
 
 ```text
-v1.0.x  Backward-compatible fixes and clarifications
-v1.x.0  New compatible modes, fields, or analysis capabilities
+v1.0.x  Backward-compatible fixes
+v1.x.0  New compatible inputs, modes, fields, or analysis capabilities
 v2.0.0  Breaking output-contract or behavior changes
 ```
 
@@ -472,9 +478,9 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 ## Security & privacy
 
-Screenshots can contain private product information, user data, or credentials.
+Figma URLs and screenshots can point to confidential product work.
 
-ARX UI Spec should inspect only the material needed for the task and should never encourage publishing private screenshots or extracted secrets into public repositories.
+ARX UI Spec never stores OAuth tokens, personal access tokens, cookies, or secret query parameters in generated specifications and does not attempt to bypass source permissions.
 
 See [SECURITY.md](SECURITY.md).
 
@@ -484,7 +490,7 @@ See [SECURITY.md](SECURITY.md).
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The public contract of `arx-ui-spec` is intentionally strict: contributions should preserve confidence labeling, source precedence, structured outputs, and project-agnostic behavior.
+The public contract should preserve source precedence, confidence labeling, structured output, project awareness, and provider-neutral behavior.
 
 ---
 
