@@ -4,6 +4,23 @@ All notable changes to ARX UI Spec are documented here.
 
 The project follows Semantic Versioning.
 
+## [1.1.0] - 2026-09-27
+
+### Added
+
+- Direct Figma share URL input without requiring users to manually export PNG/JPG first.
+- Figma file-key and `node-id` aware source handling.
+- Source resolution order that prefers native Figma connector/MCP/design-context tooling, then authenticated Figma REST API, then directly viewable public links, with raster exports as fallback.
+- Explicit distinction between public browser visibility and authenticated Figma REST API access.
+- Figma URL privacy rules that prevent credentials, tokens, cookies, or secret query parameters from being written into generated specs.
+- Project-aware default output location under `docs/ui-specs/{feature-name}/`.
+- Repository hygiene rules that version design specifications while ignoring only temporary generated visual artifacts.
+
+### Changed
+
+- Source precedence now includes directly viewable rendered designs before raster-export fallback.
+- Skill descriptions and Codex plugin metadata now advertise Figma-link input support.
+
 ## [1.0.0] - 2026-09-27
 
 ### Added
