@@ -1,0 +1,40 @@
+name: Validate ARX UI Spec
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path('.').rglob('*.json'):
+              with path.open(encoding='utf-8') as f:
+                  json.load(f)
+              print(f'valid: {path}')
+          PY
+
+      - name: Verify canonical and Codex skill mirrors
+        run: |
+          diff -ru skills/arx-ui-spec plugins/arx-ui-spec/skills/arx-ui-spec
+
+      - name: Verify required files
+        run: |
+          test -f README.md
+          test -f LICENSE
+          test -f CHANGELOG.md
+          test -f skills/arx-ui-spec/SKILL.md
+          test -f schemas/design-spec.schema.json
+          test -f plugins/arx-ui-spec/.codex-plugin/plugin.json
+          test -f .agents/plugins/marketplace.json

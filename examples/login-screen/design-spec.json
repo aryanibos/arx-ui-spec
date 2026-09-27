@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "screen",
+  "metadata": {
+    "name": "Login",
+    "generatedBy": "arx-ui-spec",
+    "skillVersion": "1.0.0"
+  },
+  "source": {
+    "type": "png",
+    "name": "login.png",
+    "notes": "Raster export; hidden Figma metadata is unavailable."
+  },
+  "viewport": {
+    "width": { "value": 1440, "unit": "px", "confidence": "EXACT" },
+    "height": { "value": 1080, "unit": "px", "confidence": "EXACT" }
+  },
+  "layout": {
+    "type": "centered-card",
+    "pageBackground": { "value": "#F7F9FA", "confidence": "ESTIMATED" },
+    "horizontalAlignment": "center",
+    "verticalAlignment": "center"
+  },
+  "componentTree": {
+    "name": "LoginPage",
+    "children": [
+      { "name": "BackgroundDecoration" },
+      {
+        "name": "AuthCard",
+        "children": [
+          { "name": "BrandLogo" },
+          { "name": "EmailField" },
+          { "name": "PasswordField" },
+          { "name": "RememberMe" },
+          { "name": "SubmitButton" }
+        ]
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "AuthCard",
+      "type": "card",
+      "width": { "value": 496, "unit": "px", "confidence": "ESTIMATED" },
+      "radius": { "value": 16, "unit": "px", "confidence": "ESTIMATED" },
+      "background": { "value": "#FFFFFF", "confidence": "ESTIMATED" }
+    },
+    {
+      "name": "SubmitButton",
+      "type": "button",
+      "height": { "value": 52, "unit": "px", "confidence": "ESTIMATED" },
+      "background": { "value": "#67AD48", "confidence": "ESTIMATED" }
+    }
+  ],
+  "tokens": {
+    "colors": {
+      "primary": { "value": "#67AD48", "confidence": "ESTIMATED" },
+      "surface": { "value": "#FFFFFF", "confidence": "ESTIMATED" },
+      "textPrimary": { "value": "#2C3440", "confidence": "ESTIMATED" }
+    },
+    "spacing": {
+      "baseUnit": { "value": 8, "unit": "px", "confidence": "INFERRED" },
+      "scale": [4, 8, 12, 16, 24, 32, 48, 64]
+    },
+    "typography": {
+      "family": { "value": "Inter", "confidence": "INFERRED" }
+    }
+  },
+  "responsive": [
+    {
+      "rule": "Keep the auth card constrained and centered as viewport width decreases.",
+      "confidence": "INFERRED"
+    },
+    {
+      "rule": "Exact mobile breakpoint and decoration behavior are not shown.",
+      "confidence": "UNKNOWN"
+    }
+  ],
+  "implementationGuidance": [
+    "Use normal grid/flex centering rather than hard-coded absolute screen coordinates.",
+    "Preserve a max-width for the authentication card and safe horizontal page padding.",
+    "Treat sampled colors and raster measurements as estimates until confirmed from source design metadata."
+  ],
+  "confidenceSummary": {
+    "exact": 2,
+    "inferred": 3,
+    "estimated": 8,
+    "unknown": 1
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "arx-ui-spec",
+  "version": "1.0.0",
+  "description": "Turn Figma exports and screenshots into implementation-ready UI specs, design tokens, component maps, and visual QA guidance for AI coding agents.",
+  "author": {
+    "name": "Arya Isnaidi",
+    "url": "https://github.com/aryanibos"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "figma",
+    "screenshot",
+    "design-spec",
+    "design-tokens",
+    "visual-qa",
+    "frontend",
+    "agent-skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "ARX UI Spec",
+    "shortDescription": "Visual designs to implementation-ready UI specs",
+    "longDescription": "Analyze Figma exports, screenshots, and UI references into structured layout specs, design tokens, semantic component maps, responsive guidance, and design-vs-implementation visual QA while preserving confidence and uncertainty.",
+    "developerName": "Arya Isnaidi",
+    "category": "Developer Tools",
+    "capabilities": ["Read"],
+    "defaultPrompt": [
+      "Use ARX UI Spec to analyze this visual design and produce an implementation-ready UI specification.",
+      "Use ARX UI Spec to compare the approved design with the current implementation and report visual QA findings."
+    ],
+    "websiteURL": "https://github.com/aryanibos/arx-ui-spec"
+  },
+  "homepage": "https://github.com/aryanibos/arx-ui-spec",
+  "repository": "https://github.com/aryanibos/arx-ui-spec"
+}

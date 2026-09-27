@@ -1,0 +1,20 @@
+{
+  "name": "arx-ui-spec",
+  "interface": {
+    "displayName": "ARX UI Spec"
+  },
+  "plugins": [
+    {
+      "name": "arx-ui-spec",
+      "source": {
+        "source": "local",
+        "path": "./plugins/arx-ui-spec"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
