@@ -1,7 +1,7 @@
 {
   "name": "arx-ui-spec",
-  "version": "1.0.0",
-  "description": "Turn Figma exports and screenshots into implementation-ready UI specs, design tokens, component maps, and visual QA guidance for AI coding agents.",
+  "version": "1.1.0",
+  "description": "Turn Figma links, Figma exports, and screenshots into implementation-ready UI specs, design tokens, component maps, and visual QA guidance for AI coding agents.",
   "author": {
     "name": "Arya Isnaidi",
     "url": "https://github.com/aryanibos"
@@ -10,6 +10,7 @@
   "keywords": [
     "ui",
     "figma",
+    "figma-link",
     "screenshot",
     "design-spec",
     "design-tokens",
@@ -20,13 +21,13 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "ARX UI Spec",
-    "shortDescription": "Visual designs to implementation-ready UI specs",
-    "longDescription": "Analyze Figma exports, screenshots, and UI references into structured layout specs, design tokens, semantic component maps, responsive guidance, and design-vs-implementation visual QA while preserving confidence and uncertainty.",
+    "shortDescription": "Figma and visual designs to implementation-ready UI specs",
+    "longDescription": "Analyze direct Figma share links, Figma exports, screenshots, and UI references into structured layout specs, design tokens, semantic component maps, responsive guidance, and design-vs-implementation visual QA while preserving confidence and uncertainty.",
     "developerName": "Arya Isnaidi",
     "category": "Developer Tools",
     "capabilities": ["Read"],
     "defaultPrompt": [
-      "Use ARX UI Spec to analyze this visual design and produce an implementation-ready UI specification.",
+      "Use ARX UI Spec to analyze this Figma link or visual design and produce an implementation-ready UI specification.",
       "Use ARX UI Spec to compare the approved design with the current implementation and report visual QA findings."
     ],
     "websiteURL": "https://github.com/aryanibos/arx-ui-spec"
