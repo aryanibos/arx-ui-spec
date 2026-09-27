@@ -152,6 +152,52 @@ Follow `references/output-contract.md` and the repository schema when available.
 
 If the environment cannot create files, present equivalent structured content in the response.
 
+## Output location & repository hygiene
+
+When writing artifacts into a repository, inspect the project's existing documentation convention first.
+
+If no relevant convention exists, use:
+
+```text
+docs/ui-specs/{feature-name}/
+```
+
+Use semantic `kebab-case` feature names such as `login`, `document-upload`, or `access-permissions` rather than source-export names such as `US-01` or `png-1`.
+
+Default screen output:
+
+```text
+docs/ui-specs/{feature-name}/
+├── design-spec.json
+└── design-spec.md
+```
+
+Default system output:
+
+```text
+docs/ui-specs/design-system/
+├── design-system.json
+└── design-system.md
+```
+
+Keep compare history under the feature, for example `qa/round-1.md`, `qa/round-2.md`, and so on.
+
+The specification is an engineering/design contract and should be version-controlled by default. Do not ignore the entire `docs/ui-specs/` directory.
+
+Put temporary or reproducible visual artifacts under `.arx-ui-spec/` or `docs/ui-specs/{feature-name}/artifacts/` and ignore only those local artifacts.
+
+When the repository is writable and no project rule conflicts, preserve the existing `.gitignore` and append this block only if equivalent rules are not already present:
+
+```gitignore
+# ARX UI Spec — generated local artifacts
+.arx-ui-spec/
+docs/ui-specs/**/artifacts/
+```
+
+Do not duplicate rules, do not remove existing ignore entries, and do not attempt to untrack already tracked files unless explicitly requested.
+
+Follow `references/output-location.md` for the complete location and Git policy.
+
 ## JSON behavior
 
 Prefer stable field names and explicit confidence fields.
@@ -229,6 +275,7 @@ Use these repository references when present:
 - `references/system-mode.md`
 - `references/compare-mode.md`
 - `references/output-contract.md`
+- `references/output-location.md`
 - `references/implementation-guidance.md`
 
 ## Core principle
