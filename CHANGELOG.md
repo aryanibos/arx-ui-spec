@@ -2,7 +2,22 @@
 
 All notable changes to ARX UI Spec are documented here.
 
-The project follows Semantic Versioning.
+The project follows Semantic Versioning for product behavior and uses major versions for material distribution-policy changes that affect downstream users.
+
+## [2.0.0] - 2026-09-27
+
+### Changed
+
+- Licensing changed prospectively from MIT to **ARX Source Available License 1.0** (`LicenseRef-ARX-Source-Available-1.0`).
+- ARX UI Spec remains free to install and use for personal, educational, internal business, commercial project, and client work.
+- Redistribution, resale, white-labeling, rebranding, and creation of substantially similar competing standalone products from the distributed source are restricted without written permission.
+- Generated UI specifications and visual-QA outputs are not claimed by the ARX license merely because they were produced using ARX UI Spec.
+- ARX and ARX UI Spec branding are explicitly reserved.
+
+### Compatibility note
+
+- Versions distributed before `2.0.0` remain governed by the license distributed with those versions.
+- The new source-available terms apply to `2.0.0` and later unless a distribution states otherwise.
 
 ## [1.1.0] - 2026-09-27
 
