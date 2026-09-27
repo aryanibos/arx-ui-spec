@@ -28,13 +28,28 @@ For non-trivial behavior changes, include:
 
 - patch: fixes/clarifications without contract changes
 - minor: backward-compatible capabilities or fields
-- major: breaking behavior/schema/output changes
+- major: breaking behavior/schema/output changes or material distribution-policy changes
 
 ## Skill mirror
 
 `skills/arx-ui-spec/` is the canonical skill source.
 
 The Codex plugin mirror under `plugins/arx-ui-spec/skills/arx-ui-spec/` must remain byte-for-byte equivalent for `SKILL.md` and reference files.
+
+## License and contribution terms
+
+ARX UI Spec `2.0.0` and later is distributed under the **ARX Source Available License 1.0** (`LicenseRef-ARX-Source-Available-1.0`).
+
+By intentionally submitting a contribution to the official repository, you represent that you have the right to submit it and agree that the accepted contribution may be distributed as part of ARX UI Spec under the project's current license and future project licenses chosen by the project owner, while preserving any third-party notices that legally must remain.
+
+Submitting a contribution does not grant permission to:
+
+- redistribute ARX UI Spec as a separate product
+- create a white-labeled or rebranded distribution
+- use ARX names or logos as your own branding
+- publish a competing standalone derivative based substantially on ARX UI Spec source
+
+See `LICENSE` and `TRADEMARKS.md` before contributing.
 
 ## Style
 
