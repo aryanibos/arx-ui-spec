@@ -1,7 +1,7 @@
 # ARX UI Spec
 
-[![Version](https://img.shields.io/badge/version-1.1.0-111827)](https://github.com/aryanibos/arx-ui-spec/releases)
-[![License: MIT](https://img.shields.io/badge/license-MIT-16a34a.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-111827)](https://github.com/aryanibos/arx-ui-spec/releases)
+[![License](https://img.shields.io/badge/license-ARX%20Source%20Available%201.0-f59e0b.svg)](LICENSE)
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-cross--agent-7c3aed)](https://skills.sh/)
 [![Codex Plugin](https://img.shields.io/badge/Codex-plugin-111827)](https://developers.openai.com/plugins/)
 [![Figma](https://img.shields.io/badge/input-Figma%20%7C%20PNG%20%7C%20Screenshot-f24e1e)](#direct-figma-link-support)
@@ -436,6 +436,8 @@ docs/ui-specs/{feature}/qa/round-N.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
+├── NOTICE.md
+├── TRADEMARKS.md
 ├── SECURITY.md
 └── README.md
 ```
@@ -464,15 +466,33 @@ The Codex plugin packages an intentionally mirrored copy and CI verifies that th
 
 ## Versioning
 
-Current stable version: **`1.1.0`**
+Current stable version: **`2.0.0`**
 
 ```text
-v1.0.x  Backward-compatible fixes
-v1.x.0  New compatible inputs, modes, fields, or analysis capabilities
-v2.0.0  Breaking output-contract or behavior changes
+v2.0.x  Backward-compatible fixes and clarifications
+v2.x.0  New compatible inputs, modes, fields, or analysis capabilities
+v3.0.0  Breaking behavior, schema, architecture, or distribution changes
 ```
 
+`2.0.0` is a major release because the project distribution contract changed from MIT to the ARX Source Available License 1.0.
+
 See [CHANGELOG.md](CHANGELOG.md).
+
+---
+
+## License & brand protection
+
+ARX UI Spec `2.0.0` and later is distributed under the **ARX Source Available License 1.0** (`LicenseRef-ARX-Source-Available-1.0`).
+
+You may install and use ARX UI Spec for personal work, education, internal business use, commercial projects, and client work. Generated `design-spec.json`, `design-spec.md`, and visual-QA outputs are not claimed by the ARX license merely because they were produced with ARX UI Spec.
+
+Without written permission, the distributed source may **not** be resold, republished as another standalone skill/plugin, white-labeled, rebranded, or used substantially to create a competing standalone derivative. The **ARX** and **ARX UI Spec** names and associated branding are reserved.
+
+Versions distributed before `2.0.0` remain governed by the license that shipped with those versions.
+
+Read [LICENSE](LICENSE), [NOTICE.md](NOTICE.md), and [TRADEMARKS.md](TRADEMARKS.md) for the complete terms.
+
+> This is a source-available license, not an OSI-approved open-source license.
 
 ---
 
@@ -488,12 +508,15 @@ See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions are welcome under the project contribution terms. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The public contract should preserve source precedence, confidence labeling, structured output, project awareness, and provider-neutral behavior.
+The public contract should preserve source precedence, confidence labeling, structured output, project awareness, provider-neutral behavior, and the project's licensing/brand requirements.
 
 ---
 
 ## License
 
-MIT © 2026 Arya Isnaidi
+**ARX Source Available License 1.0**  
+`LicenseRef-ARX-Source-Available-1.0`
+
+Copyright © 2026 Arya Isnaidi.
