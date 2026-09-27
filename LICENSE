@@ -1,21 +1,104 @@
-MIT License
+ARX Source Available License 1.0
+LicenseRef-ARX-Source-Available-1.0
 
-Copyright (c) 2026 Arya Isnaidi
+Copyright (c) 2026 Arya Isnaidi. All rights reserved except as expressly granted below.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This license applies to ARX UI Spec version 2.0.0 and later unless a file or distribution states otherwise.
+Versions released before 2.0.0 remain governed by the license distributed with those versions.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Definitions
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+"Software" means the ARX UI Spec source code, Agent Skill instructions, prompts, reference materials, schemas, documentation, plugin manifests, examples, and other files distributed with this repository.
+
+"You" means an individual or legal entity exercising permissions under this license.
+
+"Internal Use" means use by You, Your employees, contractors, or agents for Your own projects, products, services, research, development, or client work, without distributing the Software itself as a standalone or embedded competing product.
+
+"Generated Output" means specifications, reports, JSON, Markdown, design analysis, visual-QA findings, or other output produced through use of the Software on user-provided or user-authorized material.
+
+2. Permitted Use
+
+Subject to this license, You may:
+
+(a) install and use the Software for personal, educational, internal business, and commercial project work;
+
+(b) use the Software with supported AI coding agents and development tools;
+
+(c) make copies reasonably necessary for installation, backup, and Internal Use;
+
+(d) modify the Software privately for Your Internal Use;
+
+(e) create a private fork for Internal Use; and
+
+(f) create a public fork solely for the purpose of proposing contributions back to the official ARX UI Spec project, provided that all copyright, license, attribution, and trademark notices remain intact and the fork is not marketed or distributed as an independent product.
+
+3. Generated Output
+
+This license does not claim ownership of Generated Output merely because it was produced using the Software.
+Subject to rights in the underlying input material and applicable law, You may use Generated Output for Your own projects, products, services, documentation, and client work.
+
+4. Restrictions
+
+Except with prior written permission from Arya Isnaidi, You may not:
+
+(a) sell, sublicense, rent, lease, or commercially redistribute the Software itself;
+
+(b) publish, mirror, redistribute, or make available a modified or unmodified copy of the Software as a standalone product, package, plugin, skill, template, prompt pack, repository, marketplace listing, or downloadable distribution;
+
+(c) rebrand, white-label, rename, or present the Software, or a substantially similar derivative based on the Software, as Your own product or as a product of another person or organization;
+
+(d) use substantial portions of the Software's prompts, instruction structure, reference materials, schemas, documentation, or implementation rules to create or distribute a competing standalone UI-specification skill, agent product, plugin, service, prompt pack, or substantially similar derivative;
+
+(e) remove, obscure, or alter copyright, license, attribution, provenance, or trademark notices;
+
+(f) use the names "ARX", "ARX UI Spec", associated logos, or confusingly similar branding except to truthfully identify the unmodified Software or to provide required attribution;
+
+(g) imply endorsement, sponsorship, certification, or official affiliation with Arya Isnaidi or ARX without written permission;
+
+(h) use the Software to bypass access controls, authentication, permissions, paywalls, or security restrictions of Figma or any other third-party service; or
+
+(i) distribute credentials, tokens, cookies, private design URLs, proprietary assets, or other secrets obtained through use of the Software.
+
+5. Contributions
+
+Contributions submitted to the official repository may be accepted under contributor terms specified by the project. Submission of a contribution does not grant permission to use ARX trademarks or to redistribute the Software outside the permissions of this license.
+
+6. Attribution
+
+Where the Software is displayed as an installed skill, plugin, integration, or development dependency, You must not intentionally remove attribution that identifies:
+
+ARX UI Spec
+Created by Arya Isnaidi
+https://github.com/aryanibos/arx-ui-spec
+
+No attribution is required in applications, websites, documents, or Generated Output merely produced using the Software unless another applicable license or agreement requires it.
+
+7. Trademarks
+
+No trademark rights are granted by this license. The ARX name, ARX UI Spec name, logos, visual identity, and associated branding are reserved. See TRADEMARKS.md when distributed with the Software.
+
+8. Third-Party Materials
+
+Third-party names, trademarks, APIs, services, formats, and dependencies remain subject to their respective owners' terms. This license does not grant rights in third-party material.
+
+9. Termination
+
+Your rights under this license terminate automatically if You materially violate its terms and do not cure the violation within 30 days after receiving written notice, where cure is possible. Upon termination, You must stop distributing or using copies in a manner not permitted by this license. Rights in Generated Output lawfully produced before termination are not revoked by this clause.
+
+10. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+
+11. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+12. Additional Permission
+
+For redistribution, OEM, white-label, marketplace, training-data, hosted-service, or other rights not granted here, obtain written permission from the copyright holder.
+
+13. License Identifier
+
+This is a custom source-available license and is not an OSI-approved open-source license. Where an SPDX-style identifier is required, use:
+
+LicenseRef-ARX-Source-Available-1.0
