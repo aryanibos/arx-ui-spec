@@ -14,20 +14,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate JSON files
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          for path in Path('.').rglob('*.json'):
-              with path.open(encoding='utf-8') as f:
-                  json.load(f)
-              print(f'valid: {path}')
-          PY
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependencies
+        run: python -m pip install --disable-pip-version-check "jsonschema>=4.23,<5"
+
+      - name: Validate ARX UI Spec contract
+        run: python scripts/validate_contract.py
 
       - name: Verify canonical and Codex skill mirrors
-        run: |
-          diff -ru skills/arx-ui-spec plugins/arx-ui-spec/skills/arx-ui-spec
+        run: diff -ru skills/arx-ui-spec plugins/arx-ui-spec/skills/arx-ui-spec
 
       - name: Verify required files
         run: |
@@ -35,6 +34,9 @@ jobs:
           test -f LICENSE
           test -f CHANGELOG.md
           test -f skills/arx-ui-spec/SKILL.md
+          test -f skills/arx-ui-spec/agents/openai.yaml
           test -f schemas/design-spec.schema.json
+          test -f scripts/validate_contract.py
           test -f plugins/arx-ui-spec/.codex-plugin/plugin.json
+          test -f plugins/arx-ui-spec/skills/arx-ui-spec/agents/openai.yaml
           test -f .agents/plugins/marketplace.json
