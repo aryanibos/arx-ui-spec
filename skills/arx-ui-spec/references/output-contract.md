@@ -26,6 +26,8 @@ compare
 
 Only include `compare` in compare mode.
 
+When the source is a direct Figma link, `source.type` may be `figma-url`; record only non-secret traceability fields such as access method, file key, and node ID when available.
+
 ### Measurement shape
 
 Use this shape when uncertainty matters:
@@ -93,7 +95,7 @@ Recommended structure:
 ## Designer Confirmation
 ```
 
-For compare mode, replace component implementation sections with:
+For compare mode, preserve round history as paired machine-readable and human-readable artifacts (`qa/round-N.json` and `qa/round-N.md`) when writing into a repository. Replace component implementation sections with:
 
 ```text
 ## Visual QA Summary
@@ -112,3 +114,5 @@ For compare mode, replace component implementation sections with:
 5. Avoid excessive one-off fields when a reusable structure works.
 6. Markdown should explain the design, not simply duplicate every JSON field.
 7. If a field cannot be established, use `UNKNOWN` or omit it when truly irrelevant; never fabricate a value to fill the schema.
+8. Keep `metadata.skillVersion` aligned with the skill release that generated the artifact.
+9. Keep `confidenceSummary` consistent with the confidence-bearing facts represented in the JSON.
