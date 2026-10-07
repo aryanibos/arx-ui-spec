@@ -1,0 +1,4 @@
+interface:
+  display_name: "ARX UI Spec"
+  short_description: "Turn Figma and visual UI evidence into implementation-ready UI specifications."
+  default_prompt: "Analyze the provided Figma design, screenshot, or UI reference with ARX UI Spec and produce an evidence-based implementation-ready specification."
