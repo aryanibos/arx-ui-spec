@@ -6,6 +6,16 @@ The project follows Semantic Versioning for product behavior and uses major vers
 
 ## [2.0.0] - 2026-09-27
 
+### Hardening — 2026-10-07
+
+- Aligned the JSON Schema with documented direct Figma URL source records.
+- Corrected v2 example metadata and confidence-summary totals.
+- Clarified compare-mode round artifacts as paired JSON + Markdown outputs.
+- Strengthened Skill trigger metadata and added ChatGPT interface metadata.
+- Added semantic contract validation for schema validity, example conformance, version consistency, confidence-summary integrity, Skill frontmatter, and bundled references.
+- Upgraded CI to run the semantic contract validator and enforce canonical/Codex mirror parity.
+
+
 ### Changed
 
 - Licensing changed prospectively from MIT to **ARX Source Available License 1.0** (`LicenseRef-ARX-Source-Available-1.0`).
