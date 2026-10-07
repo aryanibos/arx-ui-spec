@@ -3,86 +3,257 @@
   "$id": "https://github.com/aryanibos/arx-ui-spec/schemas/design-spec.schema.json",
   "title": "ARX UI Spec Design Specification",
   "type": "object",
-  "required": ["schemaVersion", "mode", "metadata", "source", "confidenceSummary"],
+  "required": [
+    "schemaVersion",
+    "mode",
+    "metadata",
+    "source",
+    "confidenceSummary"
+  ],
   "properties": {
-    "schemaVersion": { "const": "1.0" },
-    "mode": { "enum": ["screen", "system", "compare"] },
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "mode": {
+      "enum": [
+        "screen",
+        "system",
+        "compare"
+      ]
+    },
     "metadata": {
       "type": "object",
-      "required": ["name"],
+      "required": [
+        "name",
+        "generatedBy",
+        "skillVersion"
+      ],
       "properties": {
-        "name": { "type": "string" },
-        "generatedBy": { "type": "string", "default": "arx-ui-spec" },
-        "skillVersion": { "type": "string", "default": "1.0.0" }
+        "name": {
+          "type": "string"
+        },
+        "generatedBy": {
+          "type": "string",
+          "default": "arx-ui-spec"
+        },
+        "skillVersion": {
+          "type": "string",
+          "default": "2.0.0"
+        }
       },
       "additionalProperties": true
     },
     "source": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
-        "type": { "enum": ["figma-metadata", "design-tokens", "code", "png", "jpg", "screenshot", "mixed"] },
-        "name": { "type": ["string", "null"] },
-        "notes": { "type": ["string", "null"] }
+        "type": {
+          "enum": [
+            "figma-url",
+            "figma-metadata",
+            "design-tokens",
+            "code",
+            "png",
+            "jpg",
+            "screenshot",
+            "mixed"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "access": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fileKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nodeId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
       },
       "additionalProperties": true
     },
-    "viewport": { "$ref": "#/$defs/viewport" },
-    "layout": { "type": "object", "additionalProperties": true },
-    "componentTree": { "type": ["object", "array", "string"], "additionalProperties": true },
-    "components": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "tokens": { "type": "object", "additionalProperties": true },
-    "responsive": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "implementationGuidance": { "type": "array", "items": { "type": "string" } },
+    "viewport": {
+      "$ref": "#/$defs/viewport"
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "componentTree": {
+      "type": [
+        "object",
+        "array",
+        "string"
+      ],
+      "additionalProperties": true
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "responsive": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "implementationGuidance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "compare": {
       "type": "object",
       "properties": {
-        "verdict": { "enum": ["MATCH", "CLOSE", "NEEDS_ADJUSTMENT", "MAJOR_MISMATCH"] },
+        "verdict": {
+          "enum": [
+            "MATCH",
+            "CLOSE",
+            "NEEDS_ADJUSTMENT",
+            "MAJOR_MISMATCH"
+          ]
+        },
         "findings": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["area", "priority", "confidence"],
+            "required": [
+              "area",
+              "priority",
+              "confidence"
+            ],
             "properties": {
-              "area": { "type": "string" },
-              "priority": { "enum": ["Critical", "High", "Medium", "Low"] },
-              "confidence": { "$ref": "#/$defs/confidence" }
+              "area": {
+                "type": "string"
+              },
+              "priority": {
+                "enum": [
+                  "Critical",
+                  "High",
+                  "Medium",
+                  "Low"
+                ]
+              },
+              "confidence": {
+                "$ref": "#/$defs/confidence"
+              }
             },
             "additionalProperties": true
           }
         }
       },
-      "additionalProperties": true
+      "additionalProperties": true,
+      "required": [
+        "verdict",
+        "findings"
+      ]
     },
     "confidenceSummary": {
       "type": "object",
       "properties": {
-        "exact": { "type": "integer", "minimum": 0 },
-        "inferred": { "type": "integer", "minimum": 0 },
-        "estimated": { "type": "integer", "minimum": 0 },
-        "unknown": { "type": "integer", "minimum": 0 }
+        "exact": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "inferred": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unknown": {
+          "type": "integer",
+          "minimum": 0
+        }
       },
-      "additionalProperties": true
+      "additionalProperties": false,
+      "required": [
+        "exact",
+        "inferred",
+        "estimated",
+        "unknown"
+      ]
     }
   },
   "$defs": {
-    "confidence": { "enum": ["EXACT", "INFERRED", "ESTIMATED", "UNKNOWN"] },
+    "confidence": {
+      "enum": [
+        "EXACT",
+        "INFERRED",
+        "ESTIMATED",
+        "UNKNOWN"
+      ]
+    },
     "measurement": {
       "type": "object",
-      "required": ["confidence"],
+      "required": [
+        "confidence"
+      ],
       "properties": {
         "value": {},
-        "unit": { "type": ["string", "null"] },
-        "confidence": { "$ref": "#/$defs/confidence" },
-        "note": { "type": ["string", "null"] }
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       },
       "additionalProperties": false
     },
     "viewport": {
       "type": "object",
       "properties": {
-        "width": { "$ref": "#/$defs/measurement" },
-        "height": { "$ref": "#/$defs/measurement" }
+        "width": {
+          "$ref": "#/$defs/measurement"
+        },
+        "height": {
+          "$ref": "#/$defs/measurement"
+        }
       },
       "additionalProperties": true
     }
