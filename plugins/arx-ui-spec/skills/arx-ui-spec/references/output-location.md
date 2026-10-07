@@ -80,12 +80,15 @@ docs/ui-specs/{feature-name}/
 ├── design-spec.json
 ├── design-spec.md
 └── qa/
+    ├── round-1.json
     ├── round-1.md
+    ├── round-2.json
     ├── round-2.md
+    ├── round-3.json
     └── round-3.md
 ```
 
-For a single comparison, `qa/visual-qa.md` is acceptable.
+For a single comparison, `qa/visual-qa.json` + `qa/visual-qa.md` is acceptable.
 
 Do not overwrite prior QA rounds when history is useful to the team.
 
@@ -126,6 +129,7 @@ docs/ui-specs/**/design-spec.json
 docs/ui-specs/**/design-spec.md
 docs/ui-specs/**/design-system.json
 docs/ui-specs/**/design-system.md
+docs/ui-specs/**/qa/*.json
 docs/ui-specs/**/qa/*.md
 ```
 
