@@ -1,6 +1,6 @@
 ---
 name: arx-ui-spec
-description: Cross-agent UI specification skill that converts Figma links, Figma exports, screenshots, and visual references into implementation-ready UI specs, design tokens, component maps, and visual QA guidance.
+description: Cross-agent UI specification skill for analyzing Figma links, Figma exports, screenshots, and visual references into implementation-ready UI specs, design tokens, component maps, and visual QA guidance. Use when the user asks to specify one UI screen, infer a shared design system from multiple screens, or compare an approved design against an implementation.
 ---
 
 # ARX UI Spec
@@ -216,7 +216,7 @@ docs/ui-specs/design-system/
 └── design-system.md
 ```
 
-Keep compare history under the feature, for example `qa/round-1.md`, `qa/round-2.md`, and so on.
+Keep compare history under the feature. Each comparison round should preserve both a machine-readable JSON result and a human-readable Markdown report, for example `qa/round-1.json` + `qa/round-1.md`, then `qa/round-2.json` + `qa/round-2.md`. Do not overwrite prior rounds when history is useful.
 
 The specification is an engineering/design contract and should be version-controlled by default. Do not ignore the entire `docs/ui-specs/` directory.
 
@@ -239,6 +239,8 @@ Follow `references/output-location.md` for the complete location and Git policy.
 Prefer stable field names and explicit confidence fields.
 
 Do not store unsupported claims as plain facts.
+
+Apply confidence to extracted or inferred design facts where uncertainty is material. Semantic identifiers such as component names or role labels do not need confidence wrappers unless the identifier itself is uncertain.
 
 For uncertain measurements, include confidence and optionally a note or range.
 
