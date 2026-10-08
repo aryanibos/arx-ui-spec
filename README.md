@@ -1,6 +1,6 @@
 <div align="center">
 
-# ARX UI SPEC
+<img src="assets/arx-ui-spec-banner.png" alt="ARX UI SPEC" width="100%" />
 
 ### Visual Specification Engine
 
