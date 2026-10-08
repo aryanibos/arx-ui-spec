@@ -1,12 +1,23 @@
-# ARX UI Spec
+<div align="center">
+
+# ARX UI SPEC
+
+### Visual Specification Engine
+
+**A precise, confidence-aware specification layer for agentic UI development.**
+
+From visual reference to implementation-ready UI specification.
 
 [![Version](https://img.shields.io/badge/version-2.0.0-111827)](https://github.com/aryanibos/arx-ui-spec/releases)
-[![License](https://img.shields.io/badge/license-ARX%20Source%20Available%201.0-f59e0b.svg)](LICENSE)
+[![commit activity](https://img.shields.io/github/commit-activity/m/aryanibos/arx-ui-spec?label=commit%20activity)](https://github.com/aryanibos/arx-ui-spec/commits/main)
+[![issues](https://img.shields.io/github/issues/aryanibos/arx-ui-spec?label=issues)](https://github.com/aryanibos/arx-ui-spec/issues)
+[![pull requests](https://img.shields.io/github/issues-pr/aryanibos/arx-ui-spec?label=pull%20requests)](https://github.com/aryanibos/arx-ui-spec/pulls)
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-cross--agent-7c3aed)](https://skills.sh/)
-[![Codex Plugin](https://img.shields.io/badge/Codex-plugin-111827)](https://developers.openai.com/plugins/)
-[![Figma](https://img.shields.io/badge/input-Figma%20%7C%20PNG%20%7C%20Screenshot-f24e1e)](#direct-figma-link-support)
+[![License](https://img.shields.io/badge/license-ARX%20Source%20Available%201.0-f59e0b.svg)](LICENSE)
 
-> **From visual reference to implementation-ready UI specification.**
+</div>
+
+---
 
 **ARX UI Spec** is a cross-agent UI specification skill that turns **direct Figma links, Figma exports, screenshots, product mockups, and implementation screenshots** into structured design specifications that developers and AI coding agents can actually use.
 
